@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background"
+    tools:context=".fragment.SettingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/buttonframe"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/userPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/momoimg"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/nameUser"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Họ tên"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:id="@+id/phoneNumber1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16sp"
+                        android:text="Số điện thoại"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_qr_code_24"
+                    android:layout_marginLeft="70dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="QR"/>
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/baseline_arrow_forward_ios_24"
+                    android:contentDescription="next"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/momoimg"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giới thiệu Momo"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="center_vertical"/>
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:layout_marginLeft="120dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:contentDescription="next"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quản lí ví"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/buttonframe"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tài khoản/Thẻ"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawableEnd="@drawable/round_arrow_drop_down_24"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/tttd"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán, nạp tiền tự động"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawableEnd="@drawable/round_arrow_drop_down_24"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/loginSecurity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/dnbm"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:drawableEnd="@drawable/round_arrow_drop_down_24"
+                android:gravity="center_vertical"
+                android:text="Đăng nhập và bảo mật"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tiện ích"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/buttonframe"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/dtc"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Điểm tin cậy Momo"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawableEnd="@drawable/round_arrow_drop_down_24"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/tkct"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quản lí chi tiêu"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawableEnd="@drawable/round_arrow_drop_down_24"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/box"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ưu đãi"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:drawableEnd="@drawable/round_arrow_drop_down_24"/>
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/out"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@drawable/roundedbutton"
+        android:text="Đăng xuất"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        />
+
+</LinearLayout>

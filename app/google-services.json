@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "507357745381",
+    "project_id": "momov2-5e57a",
+    "storage_bucket": "momov2-5e57a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507357745381:android:307c6197e6fd00ba6ac40c",
+        "android_client_info": {
+          "package_name": "com.example.do_an"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwexUUiIZdm02Hyp_w0aiuMDZQrg8eetQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
