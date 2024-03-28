@@ -22,39 +22,46 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ContactInfoActivity extends AppCompatActivity {
-    ImageButton backTTLH;
-    TextView saveTTLH;
-    EditText address1, email;
+    ImageButton backButton;
+    TextView saveButton;
+    EditText addressEditText, emailEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
-        backTTLH = findViewById(R.id.backTTLH);
-        saveTTLH = findViewById(R.id.saveTTLH);
-        address1 = findViewById(R.id.address1);
-        email = findViewById(R.id.email);
+
+        backButton = findViewById(R.id.backTTLH);
+        saveButton = findViewById(R.id.saveTTLH);
+        addressEditText = findViewById(R.id.address1);
+        emailEditText = findViewById(R.id.email);
+
         getInfo(phoneNumber);
-        backTTLH.setOnClickListener(new View.OnClickListener() {
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        saveTTLH.setOnClickListener(new View.OnClickListener() {
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserInfo userInfo = new UserInfo("CN" + phoneNumber, email.getText().toString(),address1.getText().toString());
-                updateToFireStore(userInfo);
+                UserInfo userInfo = new UserInfo("CN" + phoneNumber, emailEditText.getText().toString(), addressEditText.getText().toString());
+                updateToFirestore(userInfo);
             }
         });
     }
-    void getInfo(String phoneNumber){
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
+
+    void getInfo(String phoneNumber) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("UsersInfo").document("CN" + phoneNumber).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -62,18 +69,18 @@ public class ContactInfoActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                String diachi = document.getString("DiaChi");
-                                address1.setText(diachi);
-                                String email1 = document.getString("Email");
-                                email.setText(email1);
+                                String address = document.getString("DiaChi");
+                                addressEditText.setText(address);
+                                String email = document.getString("Email");
+                                emailEditText.setText(email);
                             }
                         }
                     }
                 });
     }
-    private void updateToFireStore(UserInfo userInfo) {
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
+
+    private void updateToFirestore(UserInfo userInfo) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("UsersInfo").document(userInfo.getMaTTCN() + "").update("Email", userInfo.getEmail(), "DiaChi", userInfo.getDiaChi())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

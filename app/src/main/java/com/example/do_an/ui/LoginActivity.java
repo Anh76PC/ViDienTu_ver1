@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,33 +21,37 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
-    Button btlogin;
-    TextView hello, changePhone, quenPass;
-    EditText edpass;
-    ImageButton backLogin;
-    private FirebaseFirestore db;
+    Button loginButton;
+    TextView greetingTextView, changePhoneTextView, forgotPasswordTextView;
+    EditText passwordEditText;
+    ImageButton backButton;
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Khởi tạo đối tượng SharedPreferences
+
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", MODE_PRIVATE);
-        // Lưu thông tin username vào SharedPreferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        String phoneNumber = getIntent().getStringExtra("PHONE_NUMBER");
-        btlogin = findViewById(R.id.btlogin);
-        backLogin = findViewById(R.id.backLogin);
-        changePhone = findViewById(R.id.changePhone);
-        hello = findViewById(R.id.hello);
-        quenPass = findViewById(R.id.quenPass);
-        edpass = findViewById(R.id.edpass);
-        hello.setText("Xin chào, " + phoneNumber);
 
-        db = FirebaseFirestore.getInstance();
-        quenPass.setOnClickListener(new View.OnClickListener() {
+        String phoneNumber = getIntent().getStringExtra("PHONE_NUMBER");
+
+        loginButton = findViewById(R.id.btLogin);
+        backButton = findViewById(R.id.backLogin);
+        changePhoneTextView = findViewById(R.id.changePhone);
+        greetingTextView = findViewById(R.id.greeting);
+        forgotPasswordTextView = findViewById(R.id.forgotPass);
+        passwordEditText = findViewById(R.id.passwordEditText);
+
+        greetingTextView.setText("Xin chào, " + phoneNumber);
+
+        firestore = FirebaseFirestore.getInstance();
+
+        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
@@ -58,28 +61,29 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        changePhone.setOnClickListener(new View.OnClickListener() {
+
+        changePhoneTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, EnterSdtActivity.class);
+                Intent intent = new Intent(LoginActivity.this, EnterPhoneNumberActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-        backLogin.setOnClickListener(new View.OnClickListener() {
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        btlogin.setOnClickListener(new View.OnClickListener() {
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String password = edpass.getText().toString().trim();
-                //Log.d("TAG", phoneNumber); // Debug log
+                String password = passwordEditText.getText().toString().trim();
 
-                // Create a Firestore reference to the UserInfo collection
-                db.collection("UsersInfo").document("CN" + phoneNumber).get()
+                firestore.collection("UsersInfo").document("CN" + phoneNumber).get()
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(Task<DocumentSnapshot> task) {
@@ -91,20 +95,17 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             intent.putExtra("PHONE_NUMBER", phoneNumber);
-                                            editor.putString("PHONE_NUMBER", phoneNumber); // "username" là tên key, username là giá trị
+                                            editor.putString("PHONE_NUMBER", phoneNumber);
                                             editor.apply();
                                             startActivity(intent);
                                             finishAffinity();
                                         } else {
-                                            // Password does not match
                                             Toast.makeText(LoginActivity.this, "Mật khẩu không chính xác!", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
-                                        // Document does not exist
                                         Toast.makeText(LoginActivity.this, "User not found!", Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    // Error accessing Firestore
                                     Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }

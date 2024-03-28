@@ -5,6 +5,8 @@ public class User {
     String MaTTCN;
     long Soduvi;
     long Sodutuithantai;
+
+    long notificationBadge;
     Boolean IsLocked;
 
     public User() {}
@@ -16,6 +18,7 @@ public class User {
         this.Sodutuithantai = Sodutuithantai;
         this.IsLocked = IsLocked;
     }
+
 
     public String getId() {
         return id;

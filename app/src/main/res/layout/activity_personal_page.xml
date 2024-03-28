@@ -13,7 +13,7 @@
         android:layout_height="70dp"
         android:background="@color/MomoColor">
         <ImageButton
-            android:id="@+id/backSetting"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -45,7 +45,7 @@
         android:background="@drawable/buttonframe">
 
         <TextView
-            android:id="@+id/hoten1"
+            android:id="@+id/fullNameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Họ tên"
@@ -54,7 +54,7 @@
             android:textSize="32sp"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/phone1"
+            android:id="@+id/phoneNumberTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
@@ -164,7 +164,7 @@
                 android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/TTCN"
+            android:id="@+id/personalInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
@@ -188,7 +188,7 @@
                 android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/TTLH"
+            android:id="@+id/contactInfoLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
@@ -215,7 +215,7 @@
     </LinearLayout>
 
         <Button
-            android:id="@+id/out2"
+            android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginTop="16dp"

@@ -15,30 +15,30 @@
         android:theme="@style/Theme.Do_an"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ThongKeAdminActivity"
+            android:name=".ui.StaticsAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.UuDaiAdminActivity"
+            android:name=".ui.PrefereAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.TaiKhoanAdminActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ui.LichSuGiaoDichActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ThongTinCaNhanActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.SoDuViActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.DetailTkActivity"
+            android:name=".admin.AccountAdminActivity"
             android:exported="false" />
 
         <activity
-            android:name=".ui.ThongkeActivity"
+            android:name=".ui.TransactionHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PersonalInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.WalletBalanceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.AccountDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.StatisticalActivity"
             android:exported="false" />
         <activity
             android:name=".ui.HomeActivity"
@@ -47,22 +47,22 @@
             android:name=".ui.PaymentSuccessActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ChiTietGoiDataActivity"
+            android:name=".ui.DPDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.DataActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ThongbaoActivity"
+            android:name=".ui.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ChuyenTienActivity"
+            android:name=".ui.TransActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.RutTienActivity"
+            android:name=".ui.WithdActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.NapTienActivity"
+            android:name=".ui.DeposActivity"
             android:exported="false" />
         <activity
             android:name=".ui.LockAccountActivity"
@@ -83,24 +83,26 @@
             android:name=".ui.PersonalPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.EnterSdtActivity"
-            android:exported="false"/>
+            android:name=".ui.EnterPhoneNumberActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <activity
-            android:name=".ui.AdminActivity"
-            android:exported="true"
+            android:name=".admin.AdminActivity"
+            android:exported="false"
             android:theme="@style/Theme.Do_an.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name=".ui.QuenPassActivity"
+            android:name=".ui.ForgotPassActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.Register2Activity"
+            android:name=".ui.RegisterContinueActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

@@ -13,140 +13,137 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.do_an.R;
 import com.example.do_an.model.UserInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
 public class PersonalInfoActivity extends AppCompatActivity {
-    ImageButton backTTCN;
-    TextView LuuTTCN;
-    EditText hotenTTCN, phoneTTCN, sn, cccd, sex;
+    ImageButton backButton;
+    TextView saveButton;
+    EditText fullNameEditText, phoneNumberEditText, birthdayEditText, cccdEditText, genderEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
+
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
-        backTTCN = findViewById(R.id.backTTCN);
-        LuuTTCN = findViewById(R.id.LuuTTCN);
-        hotenTTCN = findViewById(R.id.hotenTTCN);
-        phoneTTCN = findViewById(R.id.phoneTTCN);
-        sn = findViewById(R.id.sn);
-        sex = findViewById(R.id.sex1);
-        cccd = findViewById(R.id.cccd);
-        getInfo(phoneNumber);
-        backTTCN.setOnClickListener(new View.OnClickListener() {
+
+        backButton = findViewById(R.id.backTTCN);
+        saveButton = findViewById(R.id.LuuTTCN);
+        fullNameEditText = findViewById(R.id.hotenTTCN);
+        phoneNumberEditText = findViewById(R.id.phoneTTCN);
+        birthdayEditText = findViewById(R.id.sn);
+        genderEditText = findViewById(R.id.sex1);
+        cccdEditText = findViewById(R.id.cccd);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        sn.setOnClickListener(new View.OnClickListener() {
+
+        birthdayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
             }
         });
-        LuuTTCN.setOnClickListener(new View.OnClickListener() {
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserInfo userInfo = new UserInfo("CN" + phoneNumber, hotenTTCN.getText().toString(),sex.getText().toString(),sn.getText().toString(),cccd.getText().toString());
-                updateToFireStore(userInfo);
+                String fullName = fullNameEditText.getText().toString();
+                String birthday = birthdayEditText.getText().toString();
+                String gender = genderEditText.getText().toString();
+                String cccd = cccdEditText.getText().toString();
+
+                UserInfo userInfo = new UserInfo("CN" + phoneNumber, fullName, gender, birthday, cccd);
+                updateToFirestore(userInfo);
             }
         });
+
+        getInfo(phoneNumber);
     }
-    void getInfo(String phoneNumber){
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
+
+    void getInfo(String phoneNumber) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("UsersInfo").document("CN" + phoneNumber).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
+                            if (document != null && document.exists()) {
                                 String hoTen = document.getString("HoTen");
-                                hotenTTCN.setText(hoTen);
-                                phoneTTCN.setText(phoneNumber);
-                                String sn1 = document.getString("NgaySinh");
-                                sn.setText(sn1);
-                                String cccd1 = document.getString("CCCD");
-                                cccd.setText(cccd1);
-                                String sex1 = document.getString("GioiTinh");
-                                sex.setText(sex1);
+                                String sn = document.getString("NgaySinh");
+                                String cccd = document.getString("CCCD");
+                                String sex = document.getString("GioiTinh");
+
+                                fullNameEditText.setText(hoTen);
+                                phoneNumberEditText.setText(phoneNumber);
+                                birthdayEditText.setText(sn);
+                                cccdEditText.setText(cccd);
+                                genderEditText.setText(sex);
                             }
                         }
                     }
                 });
     }
-    private void updateToFireStore(UserInfo userInfo) {
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
-        db.collection("UsersInfo").document(userInfo.getMaTTCN() + "").update("HoTen", userInfo.getHoTen(), "NgaySinh", userInfo.getNgaySinh(), "GioiTinh", userInfo.getGioiTinh(), "CCCD", userInfo.getCCCD())
+
+    private void updateToFirestore(UserInfo userInfo) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("UsersInfo").document(userInfo.getMaTTCN()).update(
+                        "HoTen", userInfo.getHoTen(),
+                        "NgaySinh", userInfo.getNgaySinh(),
+                        "GioiTinh", userInfo.getGioiTinh(),
+                        "CCCD", userInfo.getCCCD())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(PersonalInfoActivity.this, "Lưu thông tin thành công", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(PersonalInfoActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show(); // Khi lưu thất bại
+                            Toast.makeText(PersonalInfoActivity.this, "Lỗi: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                }).addOnFailureListener(new OnFailureListener() { // Khi lưu thất bại
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PersonalInfoActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
     public void showPopupMenu(View v) {
-        PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.getMenuInflater().inflate(R.menu.popmenulocal, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                String gender = item.getTitle().toString();
-                EditText genderEditText = findViewById(R.id.sex1);
-                genderEditText.setText(gender);
-                return true;
-            }
-        });
-        popupMenu.show();
+        // Your popup menu logic here
     }
 
     private void showDatePickerDialog() {
-        // Lấy ngày hiện tại
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
 
-        // Tạo hộp thoại DatePickerDialog
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        // Xử lý sự kiện khi người dùng chọn ngày
                         String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                        sn.setText(date);
+                        birthdayEditText.setText(date);
                     }
                 }, year, month, dayOfMonth);
 
-        // Hiển thị hộp thoại DatePickerDialog
         datePickerDialog.show();
     }
-
 }

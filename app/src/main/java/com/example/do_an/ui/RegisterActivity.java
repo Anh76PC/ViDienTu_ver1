@@ -7,22 +7,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.do_an.R;
-import com.example.do_an.database.UserDataSource;
-import com.example.do_an.model.User;
-import java.util.List;
+
 
 public class RegisterActivity extends AppCompatActivity {
     ImageButton imbbackRE;
     EditText edpassRECon;
     Button btdkyctn;
     TextView tv1;
-    private UserDataSource mDataSource;
     String check = "";
 
     @Override
@@ -41,8 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
         tv1 = findViewById(R.id.tvsdt);
         tv1.setText(phoneNumber);
         btdkyctn = findViewById(R.id.btdnlogin);
-        mDataSource = new UserDataSource(this);
-        mDataSource.open();
 
         imbbackRE.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     Intent intent;
                     if(!check.equals("1")){
-                        intent = new Intent(RegisterActivity.this, Register2Activity.class);
+                        intent = new Intent(RegisterActivity.this, RegisterContinueActivity.class);
                         Toast.makeText(RegisterActivity.this, "Vui lòng tạo mật khẩu để đăng ký tài khoản", Toast.LENGTH_SHORT).show();
 
                     }
                     else {
-                        intent = new Intent(RegisterActivity.this, QuenPassActivity.class);
+                        intent = new Intent(RegisterActivity.this, ForgotPassActivity.class);
                         Toast.makeText(RegisterActivity.this, "Vui lòng tạo lại mật khẩu để đăng nhập tài khoản", Toast.LENGTH_SHORT).show();
 
                     }

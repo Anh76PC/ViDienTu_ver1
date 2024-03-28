@@ -1,56 +1,99 @@
-//package com.example.do_an.admin;
-//
-//import androidx.appcompat.app.ActionBar;
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import android.content.Intent;
-//import android.content.SharedPreferences;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//
-//import com.example.do_an.R;
-//import com.example.do_an.ui.LoginActivity;
-//import com.example.do_an.ui.RegisterActivity;
-//
-//public class AdminActivity extends AppCompatActivity {
-//    Button GAUsers, GALich, logout;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_admin);
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.hide();
-//        // Khởi tạo đối tượng SharedPreferences
-//        SharedPreferences sharedPreferences = getSharedPreferences("isAdmin", MODE_PRIVATE);
-//        // Lưu thông tin username vào SharedPreferences
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("admin", "1"); // "username" là tên key, username là giá trị
-//        editor.apply();
-//        GAUsers = findViewById(R.id.GAUsers);
-//        GALich = findViewById(R.id.GALich);
-//        logout = findViewById(R.id.logout);
-//        logout.setOnClickListener(new View.OnClickListener() {
+package com.example.do_an.admin;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.do_an.R;
+import com.example.do_an.ui.EnterPhoneNumberActivity;
+import com.example.do_an.ui.PrefereAdminActivity;
+import com.example.do_an.ui.StaticsAdminActivity;
+
+public class AdminActivity extends AppCompatActivity {
+    private TextView logoutAdmin;
+
+    LinearLayout taiKhoan, uuDai, phanHoi, thongKe;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin);
+
+        logoutAdmin = findViewById(R.id.logout_admin);
+        taiKhoan = findViewById(R.id.taikhoan_admin);
+        uuDai = findViewById(R.id.uudai_admin);
+        phanHoi = findViewById(R.id.phanhoi_admin);
+        thongKe = findViewById(R.id.thongke_admin);
+
+        taiKhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, AccountAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        uuDai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, PrefereAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        phanHoi.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
+//            public void onClick(View v) {
+//                Intent intent = new Intent(AdminActivity.this, PhanHoiAdminActivity.class);
 //                startActivity(intent);
-//                finish();
 //            }
 //        });
-//        GAUsers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(AdminActivity.this, AllUsersActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        GALich.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(AdminActivity.this, AllLichActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//}
+
+        thongKe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, StaticsAdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+    }
+
+    public void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Thông báo");
+        builder.setMessage("Bạn có chắc chắn muốn đăng xuất khỏi ứng dụng?");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(AdminActivity.this, EnterPhoneNumberActivity.class);
+                startActivity(intent);
+                Toast myToast = Toast.makeText(getApplicationContext(), "Đăng xuất thành công", Toast.LENGTH_SHORT);
+                myToast.show();
+                finishAffinity(); // kết thúc tất cả các activity và xóa khỏi stack
+            }
+        });
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing, just dismiss the dialog
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+}

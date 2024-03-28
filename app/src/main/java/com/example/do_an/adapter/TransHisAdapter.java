@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.do_an.R;
-import com.example.do_an.model.ThongBaoModel;
+import com.example.do_an.model.NotifyModel;
 
 import java.util.List;
 
 public class TransHisAdapter extends RecyclerView.Adapter<TransHisAdapter.ViewHolder> {
-    private List<ThongBaoModel> transactionList;
+    private List<NotifyModel> transactionList;
 
-    public TransHisAdapter(List<ThongBaoModel> transactionList) {
+    public TransHisAdapter(List<NotifyModel> transactionList) {
         this.transactionList = transactionList;
     }
     @NonNull
@@ -28,7 +28,7 @@ public class TransHisAdapter extends RecyclerView.Adapter<TransHisAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull TransHisAdapter.ViewHolder holder, int position) {
-        ThongBaoModel transaction = transactionList.get(position);
+        NotifyModel transaction = transactionList.get(position);
         holder.bind(transaction);
     }
 
@@ -47,7 +47,7 @@ public class TransHisAdapter extends RecyclerView.Adapter<TransHisAdapter.ViewHo
             date = itemView.findViewById(R.id.ngay_transhis);
             hour = itemView.findViewById(R.id.gio_transhis);
         }
-        public void bind(ThongBaoModel transaction) {
+        public void bind(NotifyModel transaction) {
             titletran.setText(transaction.getTitle() + " thành công");
             pricetran.setText(transaction.getPrice());
             date.setText(transaction.getDate());

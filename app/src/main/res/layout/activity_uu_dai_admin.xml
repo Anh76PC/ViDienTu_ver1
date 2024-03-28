@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context=".ui.UuDaiAdminActivity">
+    tools:context=".ui.PrefereAdminActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

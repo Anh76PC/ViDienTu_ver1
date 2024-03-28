@@ -19,21 +19,22 @@
         android:paddingRight="16dp"
         android:paddingBottom="8dp">
 
-        <TextView
+        <EditText
             android:id="@+id/search"
-            android:drawableLeft="@drawable/baseline_search_24"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:background="@drawable/searchbgr"
-            android:text="Tìm kiếm số tài khoản trên Momo"
-            android:textColor="@color/black"
-            android:textSize="12dp"
             android:layout_marginRight="10dp"
-            />
+            android:background="@drawable/searchbgr"
+            android:drawableLeft="@drawable/baseline_search_24"
+            android:gravity="center_vertical"
+            android:hint="Tìm kiếm số tài khoản trên Momo"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:id="@+id/thongbao"
                 android:layout_width="40dp"
@@ -41,12 +42,14 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/baseline_notifications_none_24"></ImageButton>
+
             <com.nex3z.notificationbadge.NotificationBadge
                 android:id="@+id/notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|right"/>
+                android:layout_gravity="top|right" />
         </FrameLayout>
+
         <ImageButton
             android:id="@+id/goUsers"
             android:layout_width="40dp"
@@ -61,9 +64,7 @@
         android:autoStart="true"
         android:flipInterval="2000"
         android:inAnimation="@android:anim/slide_in_left"
-        android:outAnimation="@android:anim/slide_out_right"
-        >
-
+        android:outAnimation="@android:anim/slide_out_right">
 
 
         <ImageView
@@ -77,40 +78,61 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/qc2" />
+
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/qc3"/>
+            app:srcCompat="@drawable/qc3" />
     </ViewFlipper>
 
-    <TextView
-        android:id="@+id/soduvi"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/searchbgr"
-        android:drawableRight="@drawable/hidepass"
-        android:paddingLeft="16dp"
-        android:text="Số dư ví: "
-        android:textColor="#000000"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        android:gravity="center_horizontal"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/soduvi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/searchbgr"
+            android:paddingLeft="16dp"
+            android:text="Số dư ví: *****"
+            android:textColor="#000000"
+            android:textSize="24dp"
+            android:textStyle="bold"></TextView>
+
+        <ImageButton
+            android:id="@+id/showSodu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/hidepass">
+
+        </ImageButton>
+
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_margin="10dp"
-        android:background="@drawable/stroke_black"/>
+        android:background="@drawable/stroke_black" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dịch vụ của bạn"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:paddingBottom="8dp"
         android:paddingLeft="8dp"
-        android:textColor="@color/black"/>
+        android:paddingBottom="8dp"
+        android:text="Dịch vụ của bạn"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -130,11 +152,11 @@
                 android:id="@+id/naptien"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/buttonframe"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="12dp"
-                android:layout_marginRight="8dp">
+                android:padding="12dp">
 
                 <ImageButton
                     android:layout_width="40dp"
@@ -155,10 +177,10 @@
                 android:id="@+id/rutTien"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="@drawable/buttonframe"
-                android:orientation="vertical"
                 android:layout_marginRight="8dp"
+                android:background="@drawable/buttonframe"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:padding="12dp">
 
                 <ImageButton
@@ -180,8 +202,8 @@
                 android:id="@+id/chuyenTien"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:background="@drawable/buttonframe"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:padding="12dp">
 
@@ -211,11 +233,11 @@
                 android:id="@+id/napdata"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/buttonframe"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:padding="12dp"
-                android:layout_marginRight="8dp">
+                android:padding="12dp">
 
                 <ImageButton
                     android:layout_width="40dp"
@@ -236,10 +258,10 @@
             <LinearLayout
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:background="@drawable/buttonframe"
-                android:orientation="vertical"
                 android:layout_marginRight="8dp"
+                android:background="@drawable/buttonframe"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:padding="12dp">
 
                 <ImageButton
@@ -261,8 +283,8 @@
             <LinearLayout
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:background="@drawable/buttonframe"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:padding="12dp">
 
@@ -282,11 +304,6 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-
-
-
-
 
 
 </LinearLayout>

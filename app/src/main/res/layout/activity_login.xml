@@ -43,7 +43,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/hello"
+            android:id="@+id/greeting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
@@ -63,7 +63,7 @@
             android:textStyle="bold" />
         <EditText
             android:drawableEnd="@drawable/hidepass"
-            android:id="@+id/edpass"
+            android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/roundedbutton"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10sp"
-                android:id="@+id/quenPass"
+                android:id="@+id/forgotPass"
                 android:text="Quên mật khẩu?"
                 android:textColor="#364ABA"
                 android:textSize="15sp" />
@@ -132,7 +132,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btlogin"
+        android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="10sp"

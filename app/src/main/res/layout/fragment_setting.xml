@@ -51,7 +51,7 @@
                         android:textSize="24sp"/>
 
                     <TextView
-                        android:id="@+id/phoneNumber1"
+                        android:id="@+id/phoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
